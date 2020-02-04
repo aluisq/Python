@@ -1,22 +1,19 @@
 import requests
 import json
 
+print("###########################")
+print("####ESCOLHA SEU POKEMON####")
+print("###########################")
 
-print("########################")
-print("####ESCOLHA SEU POKEMON#####")
-print("########################")
+pkm = input("Escolha seu pokemon: ").lower() #método dinâmico
 
-pkm = input("Escolha seu pokemon: ") #método dinâmico
-
-# pkm = pikachu #método estático
-
-def obterEnd(pkm):
+def obterPkm(pkm):
     url = f'https://pokeapi.co/api/v2/pokemon/{pkm}/'
     r = requests.get(url)
     response = r.json()
+    cont = 0
+    for ability in response["abilities"]:
+        cont += 1
+        print(f'{cont}° habilidade : {list(ability.values())[0]["name"]}')
 
-    print(pkm_inf)
-
-print(f'{response["moves"]}')
-
-obterEnd(pkm)
+obterPkm(pkm)
